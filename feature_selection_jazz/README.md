@@ -14,4 +14,4 @@ We recommend to install [miniconda](https://conda.io/miniconda.html) to be able 
 
 # Google Colab
 
-You can also open the Python notebook in [Google Colab](https://drive.google.com/open?id=1KiDN0VYpdWv_sFmpONws1ZKpAPeCL-m7)
+You can also open the Python notebook in [Google Colab](https://colab.research.google.com/drive/1EajGZOWeNg5sZ05BH4vACnHdOfHvSPl6)
