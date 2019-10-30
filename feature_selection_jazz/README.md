@@ -11,3 +11,7 @@ We recommend to install [miniconda](https://conda.io/miniconda.html) to be able 
     conda env create -f environment.yml
     source activate jazzomat_experiments
     python main.py
+
+# Google Colab
+
+You can also open the Python notebook in [Google Colab](https://colab.research.google.com/drive/1EajGZOWeNg5sZ05BH4vACnHdOfHvSPl6)
