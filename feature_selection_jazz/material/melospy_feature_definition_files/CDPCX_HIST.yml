@@ -1,0 +1,45 @@
+label: Extended Chordal Diatonic Pitch Class Distribution
+description: Histogram and raw vector of extended multi-digit chordal diatonic pitch classes (CDPCX)
+feature:
+
+  source:
+    CDPCX:
+      param: chordal-diatonic-pitch-class-ext
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: nominal
+      density: True
+      inputVec: CDPCX.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: CDPCX.outputVec
+      label: raw
+      doc:
+        type: Integer
+        length: N
+        description: Raw output of note-wise CDPCX values
+
+    F2:
+      type: sink
+      input: HIST.bins  
+      label: hist_bins
+      doc:
+        type: Integer
+        length: N
+        description: Histogram bins (all unique CDPCX values occuring in a melody)
+
+    F3:
+      type: sink
+      input: HIST.histVec
+      label: hist_density
+      doc:
+        type: Real
+        length: N
+        description: Histogram bin count values (normalized to density)
+      

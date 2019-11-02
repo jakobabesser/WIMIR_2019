@@ -1,0 +1,25 @@
+label: Microtiming Features
+description: Features related to micro-timing in a solo. 
+
+feature:
+
+  source:
+    SWING_RATIOS:
+      param: swing-ratios
+      
+  process:
+
+    ID1:
+      type: id
+      inputVec: SWING_RATIOS.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: ID1.outputVec
+      label: swing_ratios
+      doc:
+        type: Real
+        length: Var
+        description: 'Swing ratios of beats with a binary sub-division as the ratio duration of the first to the second quaver in a beat. The first duration is set to 1. A swing ratio value of ``s`` means a proportion ``1:s``. Straight binary eigths have a value of 1 (1:1), whereas triplet eights get 0.5, since 1:0.5 = 2:1.'

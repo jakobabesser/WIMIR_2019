@@ -1,0 +1,122 @@
+label: Inter-onset Interval Class Single Densities
+description: 'Histogram count for all 5 duration classes (**very short**: -2, **short**: -1, **medium**: 0, **long**: 1, **very long**: 2). Reference time-span is either local beat duration ("relative mode") or 0.5 sec ("absolute mode")'
+feature:
+
+  source:
+    IOI_ABS:
+      param: ioiclass
+      optParam: abs
+    IOI_REL:
+      param: ioiclass
+      optParam: rel
+      
+  process:
+
+    HIST_ABS:
+      type: hist
+      histogramType: ordinal
+      min: -2
+      max: +2
+      density: True
+      inputVec: IOI_ABS.outputVec
+    HIST_REL:
+      type: hist
+      histogramType: ordinal
+      min: -2
+      max: +2
+      density: True
+      inputVec: IOI_REL.outputVec
+       
+  sink:
+
+    F0:
+      type: sink
+      input: HIST_ABS.histVec
+      index: 0
+      label: ioiclass_abs_hist_very_short
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **very short**  (absolute mode)"
+    F1:
+      type: sink
+      input: HIST_ABS.histVec
+      index: 1
+      label: ioiclass_abs_hist_short
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **short**  (absolute mode)"
+    F2:
+      type: sink
+      input: HIST_ABS.histVec
+      index: 2
+      label: ioiclass_abs_hist_medium
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **medium** (absolute mode)."
+    F3:
+      type: sink
+      input: HIST_ABS.histVec
+      index: 3
+      label: ioiclass_abs_hist_long
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **long** (absolute mode)."
+    F4:
+      type: sink
+      input: HIST_ABS.histVec
+      index: 4
+      label: ioiclass_abs_hist_very_long
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **very long** (absolute mode)."
+
+    F5:
+      type: sink
+      input: HIST_REL.histVec
+      index: 0
+      label: ioiclass_rel_hist_very_short
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **very short** (relative  mode)."
+    F6:
+      type: sink
+      input: HIST_REL.histVec
+      index: 1
+      label: ioiclass_rel_hist_short
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **short** (relative  mode)"
+    F7:
+      type: sink
+      input: HIST_REL.histVec
+      index: 2
+      label: ioiclass_rel_hist_medium
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **medium** (relative mode)"
+    F8:
+      type: sink
+      input: HIST_REL.histVec
+      index: 3
+      label: ioiclass_rel_hist_long
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **long** (relative mode)"
+    F9:
+      type: sink
+      input: HIST_REL.histVec
+      index: 4
+      label: ioiclass_rel_hist_very_long
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **very long** (relative mode)"

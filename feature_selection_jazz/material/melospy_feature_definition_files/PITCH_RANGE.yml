@@ -1,0 +1,21 @@
+label: Pitch Range (Ambitus)
+description: Pitch range in semitones.
+
+feature:
+  source:
+    PITCH:
+      param: pitch
+  process:
+    STAT: 
+      type: stat
+      measure: range
+      inputVec: PITCH.outputVec
+  sink:
+    F2: 
+      input: STAT.outputVec
+      label: pitch_range  
+      doc:
+        type: Integer [0:127]
+        length: 1
+        description: Pitch range in semitones
+      

@@ -1,0 +1,247 @@
+label: Pitch Class Single Densities
+description: Histogram counts of all 12 PC values (normalized to density)
+
+feature:
+
+  source:
+    PC:
+      param: pc
+            
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: 0
+      max: 11
+      density: True
+      inputVec: PC.outputVec
+
+    HIST_COUNT:
+      type: hist
+      histogramType: ordinal
+      min: 0
+      max: 11
+      density: False
+      inputVec: PC.outputVec
+       
+  sink:
+
+    F0:
+      type: sink
+      input: HIST.histVec
+      index: 0
+      label: hist_density_0
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  0
+    F1:
+      type: sink
+      input: HIST.histVec
+      index: 1
+      label: hist_density_1
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  1
+    F2:
+      type: sink
+      input: HIST.histVec
+      index: 2
+      label: hist_density_2
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  2
+    F3:
+      type: sink
+      input: HIST.histVec
+      index: 3
+      label: hist_density_3
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  3
+    F4:
+      type: sink
+      input: HIST.histVec
+      index: 4
+      label: hist_density_4
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  4
+    F5:
+      type: sink
+      input: HIST.histVec
+      index: 5
+      label: hist_density_5
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  5
+    F6:
+      type: sink
+      input: HIST.histVec
+      index: 6
+      label: hist_density_6
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  6
+    F7:
+      type: sink
+      input: HIST.histVec
+      index: 7
+      label: hist_density_7
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  7
+    F8:
+      type: sink
+      input: HIST.histVec
+      index: 8
+      label: hist_density_8
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  8
+    F9:
+      type: sink
+      input: HIST.histVec
+      index: 9
+      label: hist_density_9
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  9
+    F10:
+      type: sink
+      input: HIST.histVec
+      index: 10
+      label: hist_density_10
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  10
+    F11:
+      type: sink
+      input: HIST.histVec
+      index: 11
+      label: hist_density_11
+      doc:
+        type: Real
+        length: 1
+        description: Relative frequency PC =  11
+
+    FC0:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 0
+      label: hist_count_0
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  0
+    FC1:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 1
+      label: hist_count_1
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  1
+    FC2:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 2
+      label: hist_count_2
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  2
+    FC3:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 3
+      label: hist_count_3
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  3
+    FC4:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 4
+      label: hist_count_4
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  4
+    FC5:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 5
+      label: hist_count_5
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  5
+    FC6:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 6
+      label: hist_count_6
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  6
+    FC7:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 7
+      label: hist_count_7
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  7
+    FC8:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 8
+      label: hist_count_8
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  8
+    FC9:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 9
+      label: hist_count_9
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  9
+    FC10:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 10
+      label: hist_count_10
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  10
+    FC11:
+      type: sink
+      input: HIST_COUNT.histVec
+      index: 11
+      label: hist_count_11
+      doc:
+        type: Integer
+        length: 1
+        description: Frequency PC =  11
+      

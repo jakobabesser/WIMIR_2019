@@ -1,0 +1,47 @@
+label: Fuzzy Interval Distribution
+description: "Histogram and raw vector of fuzzy intervals (FUZZYINT). Values: **big jump up/down** (+/-4), **jump** up/down** (+/-3), **leap up/down** (+/-1), **step up/down** (+/-1), **repetition** (0)"
+
+feature:
+
+  source:
+    INTFUZZ:
+      param: fuzzyinterval
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: -4
+      max: +4
+      density: True
+      inputVec: INTFUZZ.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: INTFUZZ.outputVec
+      label: int_fuzz_raw
+      doc:
+        type: Integer [-4..+4]
+        length: N-1
+        description: Raw output (Fuzzy interval values over the full melody)
+
+    F2:
+      type: sink
+      input: HIST.bins  
+      label: int_fuzz_hist_values
+      doc:
+        type: Integer [-4:4]
+        length: 5
+        description: Histogram bins
+
+    F3:
+      type: sink
+      input: HIST.histVec
+      label: int_fuzz_hist_dens
+      doc:
+        type: Real
+        length: 5
+        description: Histogram bin count (normalized to density)

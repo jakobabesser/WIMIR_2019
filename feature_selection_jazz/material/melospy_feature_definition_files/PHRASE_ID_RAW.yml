@@ -1,0 +1,25 @@
+label: Phrase IDs
+description: Returns the sequence of raw phrase IDs. 
+
+feature:
+
+  source:
+    PHRASE_ID:
+      param: phrase-ids
+      
+  process:
+
+    ID:
+      type: id
+      inputVec: PHRASE_ID.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: ID.outputVec
+      label: phrase_id_raw
+      doc:
+        type: Integer
+        length: ":math:`N_P`"
+        description: Sequence of phrase IDs.

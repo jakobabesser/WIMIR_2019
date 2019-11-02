@@ -1,0 +1,45 @@
+label: "Special: Export Patterns"
+description: Feature extracts pitch patterns and saves them as CSV files (to be imported as regions layer in SonicVisualizer).
+feature:
+  source:
+    PITCH:
+      param: pitch
+    ONSET:
+      param: onset
+    DURATION:
+      param: duration
+    FILENAME:
+      param: meta.filenamesv
+      
+  process:
+    DIFF:
+      type: diff
+      inputVec: PITCH.outputVec
+    PAT: 
+      type: pattern
+      method: similarityMatrix
+      minPatternLength: 5
+      inputVec: DIFF.outputVec
+    PAT_EX: 
+      type: patternExport
+      patternRepresentationLabel: pitch
+      patterns: PAT.patterns
+      pitch: PITCH.outputVec
+      onset: ONSET.outputVec
+      duration: DURATION.outputVec
+      exportCSVForSVRegionsLayer: 1
+      exportPianoRollSegmentsPlot: 0
+      SVFileName: FILENAME.outputVec
+      targetDirectory: /Volumes/untitled/Work/Jazzomat_Repository/analysis/data/
+
+  sink:
+      F1:
+       type: sink
+       input: ONSET.outputVec
+       label: dummy_feature
+       doc:
+         type: N/A
+         length: N/A
+         description: Unused dummy feature.
+
+      

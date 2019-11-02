@@ -1,0 +1,232 @@
+label: Solo Metadata
+description: Export all metadata for Jazzomat solos (currently only a subset)
+
+feature:
+  source:
+    PERFORMER:
+      param: meta.performer
+    TITLE:
+      param: meta.title
+    TITLEADDON:
+      param: meta.titleaddon
+    SOLOPART:
+      param: meta.solopart
+    INSTRUMENT:
+      param: meta.instrument
+    STYLE:
+      param: meta.style
+    AVGTEMPO:
+      param: meta.avgtempo
+    TEMPOCLASS:
+      param: meta.tempoclass
+    RHYTHMFEEL:
+      param: meta.rhythmfeel
+    KEY:
+      param: meta.key
+    FILENAMESV:
+      param: meta.filenamesv
+    STATUS:
+      param: meta.status
+    COMPOSER:
+      param: meta.composer
+    TONALITY:
+      param: meta.tonalitytype
+    GENRE:
+      param: meta.genre
+    FORM:
+      param: meta.form
+
+        
+  process:
+    ID1:
+      type: id
+      inputVec: PERFORMER.outputVec
+
+    ID2:
+      type: id
+      inputVec: TITLE.outputVec
+
+    ID3:
+      type: id
+      inputVec: TITLEADDON.outputVec
+
+    ID4:
+      type: id
+      inputVec: SOLOPART.outputVec
+
+    ID5:
+      type: id
+      inputVec: INSTRUMENT.outputVec
+
+    ID6:
+      type: id
+      inputVec: STYLE.outputVec
+
+    ID7:
+      type: id
+      inputVec: AVGTEMPO.outputVec
+
+    ID8:
+      type: id
+      inputVec: TEMPOCLASS.outputVec
+
+    ID9:
+      type: id
+      inputVec: RHYTHMFEEL.outputVec
+
+    ID10:
+      type: id
+      inputVec: KEY.outputVec
+
+    ID11:
+      type: id
+      inputVec: FILENAMESV.outputVec
+
+    ID12:
+      type: id
+      inputVec: STATUS.outputVec
+
+    ID13:
+      type: id
+      inputVec: COMPOSER.outputVec
+
+    ID14:
+      type: id
+      inputVec: TONALITY.outputVec
+
+    ID15:
+      type: id
+      inputVec: GENRE.outputVec
+
+    ID16:
+      type: id
+      inputVec: FORM.outputVec
+
+  sink:
+    F1:
+      input: ID1.outputVec
+      label: performer
+      doc:
+        type: String
+        length: 1
+        description: Performer.
+    F2:
+      input: ID2.outputVec
+      label: title
+      doc:
+        type: String 
+        length: 1
+        description: Title.
+    F3:
+      input: ID3.outputVec
+      label: titleaddon
+      doc:
+        type: String
+        length: 1
+        description: Add-on for title.
+    F4:
+      input: ID4.outputVec
+      label: solopart
+      doc:
+        type: String
+        length: 1
+        description: Running number of a solo in a piece.
+
+    F5:
+      input: ID5.outputVec
+      label: instrument
+      doc:
+        type: String
+        length: 1
+        description: Instrument of the soloist. One of ``ts``, ``ts-c``, ``as``, ``bs``, ``bsx``, ``cbsx``, ``ss``, ``sss``, ``cl``, ``bcl``, ``acl``, ``tp``, ``tpt``, ``flgn``, ``tb``, ``fl``, ``corn``, ``ptp``, ``frhn``, ``ob``, ``voc``  or empty.
+
+
+    F6:
+      input: ID6.outputVec
+      label: style
+      doc:
+        type: String
+        length: 1
+        description: Style of piece. One of ``TRADITIONAL``, ``SWING``,  ``BEBOP``, ``COOL``, ``HARDBOP``, ``POSTBOP``, ``FREE``, ``FUSION``, ``OTHER``, ``MIX``  or empty.
+
+    F7:
+      input: ID7.outputVec
+      label: avgtempo
+      doc:
+        type: String
+        length: 1
+        description: Avg. Tempo (bpm)
+
+    F8:
+      input: ID8.outputVec
+      label: tempoclass
+      doc:
+        type: String
+        length: 1
+        description: Tempo class. One of ``SLOW``, ``MEDIUM SLOW``, ``MEDIUM``, ``MEDIUM UP``, ``UP`` or empty.
+ 
+
+    F9:
+      input: ID9.outputVec
+      label: rhythmfeel
+      doc:
+        type: String
+        length: 1
+        description: Basic rhythmic feel/groove style. One of ``TWOBEAT``, ``SWING``, ``BALLAD``, ``LATIN``, ``FUNK`` or empty.
+
+    F10:
+      input: ID10.outputVec
+      label: key
+      doc:
+        type: String
+        length: 1
+        description: Key or tonal center of the piece.
+
+    F11:
+      input: ID11.outputVec
+      label: filename_sv
+      doc:
+        type: String
+        length: 1
+        description: Filename of originating SV project file.
+
+    F12:
+      input: ID12.outputVec
+      label: status
+      doc:
+        type: String
+        length: 1
+        description: Status of transcription. One of ``PREFINAL``, ``FINAL``, ``DRAFT``, ``ASSIGNED`` or empty.
+
+    F13:
+      input: ID13.outputVec
+      label: composer
+      doc:
+        type: String
+        length: 1
+        description: Composer of the piece.
+
+    F14:
+      input: ID14.outputVec
+      label: tonality_type
+      doc:
+        type: String
+        length: 1
+        description: Tonality type of the composition. One of ``FUNCTIONAL``, ``MODAL``, ``COLOR``, ``FREE``, ``BLUES``, ``JAZZ-BLUES`` or empty.
+
+    F15:
+      input: ID15.outputVec
+      label: genre
+      doc:
+        type: String
+        length: 1
+        description: Genre of the composition. One of ``TRADITIONAL``, ``BLUES``, ``GREAT AMERICAN SONGBOOK``, ``WORMS``, ``ORIGINAL``, ``RIFF`` or empty.
+
+    F16:
+      input: ID16.outputVec
+      label: form
+      doc:
+        type: String
+        length: 1
+        description: Form of the composition. 
+      

@@ -1,0 +1,37 @@
+label: Articulation
+description: Articulation of notes. Possible values are ``slide``, ``vibrato``, ``straight``, or an empty string, which might indicate that nor articulation is present or not annotated.
+
+feature:
+  source:
+    ARTICULATION:
+      param: articulation
+
+    ARTICULATION_SHORT:
+      param: articulation
+      optParam: short
+      
+  process:
+    ID1:
+      type: id
+      inputVec: ARTICULATION.outputVec
+    ID2:
+      type: id
+      inputVec: ARTICULATION_SHORT.outputVec
+
+
+  sink:
+    F1:
+      input: ID1.outputVec
+      label: articulation
+      doc:
+        type: String
+        length: N
+        description: Annoated articulation per tone.
+    F2:
+      input: ID2.outputVec
+      label: articulation_short
+      doc:
+        type: String
+        length: N
+        description: Annoated articulation per tone (short label).
+      

@@ -1,0 +1,59 @@
+label: Phrase and Chorus IDs
+description: Returns sequences of raw phrase and chorus IDs. 
+
+feature:
+
+  source:
+    PHRASE_ID:
+      param: phrase-ids
+    CHORUS_ID:
+      param: chorus-ids
+      
+  process:
+
+    ID1:
+      type: id
+      inputVec: PHRASE_ID.outputVec
+    ID2:
+      type: id
+      inputVec: CHORUS_ID.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: ID1.outputVec
+      label: phrase_id_seq
+      doc:
+        type: Integer
+        length: ":math:`N_P`"
+        description: Sequence of phrase IDs.
+
+    F2:
+      type: sink
+      input: ID2.outputVec
+      label: chorus_id_seq
+      doc:
+        type: Integer
+        length: ":math:`N_C`"
+        description: Sequence of chorus IDs.
+
+    F3:
+      type: sink
+      input: ID1.outputVec
+      label: phrase_id
+      index: 0
+      doc:
+        type: Integer
+        length: 1
+        description: First phrase ID.
+
+    F2:
+      type: sink
+      input: ID2.outputVec
+      label: chorus_id
+      index: 0
+      doc:
+        type: Integer
+        length: 1
+        description: First chorus IDs.

@@ -1,0 +1,45 @@
+label: Chordal Diatonic Pitch Class Distribution
+description: Histogram and raw vector of chordal diatonic pitch classes (CDPC)
+feature:
+
+  source:
+    CDPC:
+      param: chordal-diatonic-pitch-class
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: nominal
+      density: True
+      inputVec: CDPC.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: CDPC.outputVec
+      label: raw
+      doc:
+        type: Integer
+        length: N
+        description: Raw output of note-wise CDPC values
+
+    F2:
+      type: sink
+      input: HIST.bins  
+      label: hist_bins
+      doc:
+        type: Integer
+        length: Variable 
+        description: Histogram bins (all unique CDPC values occuring in a melody)
+
+    F3:
+      type: sink
+      input: HIST.histVec
+      label: hist_density
+      doc:
+        type: Real
+        length: Variable
+        description: Histogram bin count values (normalized to density)
+      

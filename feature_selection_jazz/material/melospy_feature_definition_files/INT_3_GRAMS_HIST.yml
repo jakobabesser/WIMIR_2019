@@ -1,0 +1,80 @@
+label: Semitone Interval Trigrams
+description: "Histogram features for semitone intervals (INT) trigrams: all unique INT trigrams and all INT trigrams occuring at least twice."
+
+feature:
+
+  source:
+
+    PITCH:
+      param: pitch
+
+  process:
+
+    DIFF:
+      type: diff
+      inputVec: PITCH.outputVec
+
+    NGRAM:
+      type: ngram
+      N: 3
+      inputVec: DIFF.outputVec
+
+    NGRAMHIST:
+      type: hist
+      histogramType: nominal
+      inputVec: NGRAM.outputVec
+
+    TH1:
+      type: threshold
+      inputVec: NGRAMHIST.histVec
+      threshold: 1
+      operator: "gt"
+
+    SEL1:
+      type: selector
+      inputVec: NGRAMHIST.bins
+      selectVec: TH1.outputVec
+
+    SEL2:
+      type: selector
+      inputVec: NGRAMHIST.histVec
+      selectVec: TH1.outputVec
+
+  sink:
+
+    F1:
+      type: sink
+      input: NGRAMHIST.bins
+      label: int_3grams_values
+      doc:
+        type: Array  of Integer
+        length: Variable
+        description: Histogram bins (all unique INT trigrams)
+
+    F2:
+      type: sink
+      input: NGRAMHIST.histVec
+      label: int_3grams_hist
+      doc:
+        type: Integer
+        length: Variable
+        description: Histogram bin count (all unique INT trigrams)
+
+    F3:
+      type: sink
+      input: SEL1.outputVec
+      label: int_3grams_pattern
+      doc:
+        type: Array of Integer
+        length: Variable
+        description: Histogram bins (all unique INT trigrams occuring at least twice)
+
+
+    F4:
+      type: sink
+      input: SEL2.outputVec
+      label: int_3grams_pat_freq
+      doc:
+        type: Integer
+        length: Variable
+        description: Histogram bin count (all unique INT trigrams occuring at least twice)

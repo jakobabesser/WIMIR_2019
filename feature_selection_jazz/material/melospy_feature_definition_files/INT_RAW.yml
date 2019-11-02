@@ -1,0 +1,36 @@
+label: Semitone Interval (Raw) 
+description: Raw output of intervals (with appended zero-element)
+feature:
+
+  source:
+    PITCH:
+      param: pitch
+      
+  process:
+
+    DIFF:
+      type: diff
+      inputVec: PITCH.outputVec
+    APPEND:
+      type: append
+      inputVec: DIFF.outputVec
+
+  sink:
+
+    F1:
+      type: sink
+      input: DIFF.outputVec
+      label: interval_raw
+      doc:
+        type: Integer [-127:+127]
+        length: N-1
+        description: Raw semitone intervals
+
+    F2:
+      type: sink
+      input: APPEND.outputVec
+      label: interval_raw_pad
+      doc:
+        type: Integer [-127:+127]
+        length: N
+        description: Raw semitone intervals with appended 0

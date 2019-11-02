@@ -1,0 +1,97 @@
+label: Event densites (phrase-based)
+description: Events per sec of phrases and related measures (duration, length, pitch entropy)
+
+feature:
+  source:
+    ONSET:
+      param: onset
+      aggregationOver: phrases
+    IOI:
+      param: ioi
+      aggregationOver: phrases
+    PITCH:
+      param: pitch
+      aggregationOver: phrases
+    BEATS:
+      param: beats
+      aggregationOver: phrases
+
+  process:
+
+    LEN:
+      type: length
+      inputVec: PITCH.outputVec
+
+    TOTALDUR:
+      type: sum
+      inputVec: IOI.outputVec
+
+    IBI:
+      type: diff
+      inputVec: BEATS.outputVec
+
+    DENSITY:
+      type: arithmetic
+      inputVec1: LEN.outputVec
+      inputVec2: TOTALDUR.outputVec
+      operator: "/"
+
+    STAT1:
+      type: stat
+      measure: "mean"
+      inputVec: IBI.outputVec
+
+    PITCHHIST:
+      type: hist
+      histogramType: nominal
+      inputVec: PITCH.outputVec
+
+    STAT2:
+      type: stat
+      measure: "entropy_hist"
+      normalizeToDensity: True
+      inputVec: PITCHHIST.histVec
+    
+  sink:
+    F1:
+      input: DENSITY.outputVec
+      aggregationMethod: mean
+      label: mean_phrase_event_density
+      doc:
+        type: Real 
+        length: 1
+        description: Mean phrase event density (events/seconds)
+    F2:
+      input: TOTALDUR.outputVec
+      aggregationMethod: mean
+      label: mean_phrase_duration
+      doc:
+        type: Real 
+        length: 1
+        description: Mean phrase duration (seconds)
+    F3:
+      input: LEN.outputVec
+      aggregationMethod: mean
+      label: mean_phrase_length
+      doc:
+        type: Real 
+        length: 1
+        description: Mean phrase length (number of events)
+    F4:
+      input: STAT1.outputVec
+      aggregationMethod: mean
+      label: mean_phrase_tempo
+      doc:
+        type: Real 
+        length: 1
+        description: Mean phrase tempo (in seconds)
+
+    F5:
+      input: STAT2.outputVec
+      aggregationMethod: mean
+      label: mean_pitch_entropy
+      doc:
+        type: Real 
+        length: 1
+        description: Mean phrase pitch entropy (in bits)
+      

@@ -1,0 +1,69 @@
+label: Melody Export
+description: Exports melody as lists of onset, duration, pitch, and metrical positions
+feature:
+  source:
+    ONSET:
+      param: onset
+    DURATION:
+      param: duration
+    PITCH:
+      param: pitch
+    PHRASEID:
+      param: phrid
+    METER:
+      param: meter
+      
+  process:
+    ID1: 
+      type: id
+      inputVec: ONSET.outputVec
+    ID2: 
+      type: id
+      inputVec: DURATION.outputVec
+    ID3: 
+      type: id
+      inputVec: PITCH.outputVec
+    ID4: 
+      type: id
+      inputVec: METER.outputVec
+    ID5: 
+      type: id
+      inputVec: PHRASEID.outputVec
+
+  sink:
+    F1: 
+      input: ID1.outputVec
+      label: onset
+      doc:
+        type: Real 
+        length: N
+        description: Onsets (in seconds) of events
+    F2: 
+      input: ID2.outputVec
+      label: duration
+      doc:
+        type: Real 
+        length: N
+        description: Duration (in seconds) of events
+    F3: 
+      input: ID3.outputVec
+      label: pitch
+      doc:
+        type: Real 
+        length: N
+        description: Raw MIDI pitch values of events
+    F4: 
+      input: ID4.outputVec
+      label: metrical_position
+      doc:
+        type: String
+        length: N
+        description: Metrical positions of events (MP-dot-notation)
+    F5: 
+      input: ID5.outputVec
+      label: phraseid
+      doc:
+        type: String
+        length: Var
+        description: ID of containing phrase
+      

@@ -1,0 +1,51 @@
+label: Interval Power Law Features
+description: Slope and intercept based on linear regression over logarithm of relative frequencies of interval occurrences (sorted in descending order)
+
+feature:
+
+  source:
+    PITCH:
+      param: pitch
+
+  process:
+
+    DIFF:
+      type: diff
+      inputVec: PITCH.outputVec
+
+    # compute relative frequencies of all occuring values
+    HIST:
+      type: hist
+      histogramType: ordinal
+      removeEmptyBins: True
+      density: True
+      inputVec: DIFF.outputVec
+
+    # sort relative frequencies in descending order
+    SORT:
+      type: sort
+      descending: True
+      inputVec: HIST.histVec
+          
+    # take logarithm
+    LOG:
+      type: arithmetic
+      operator: log
+      inputVec1: SORT.outputVec
+      
+    # estimate slope and intercept using linear regression
+    LIN_REG:
+      type: linReg
+      inputVec: LOG.outputVec
+      
+  sink:
+      
+    F1:
+      type: sink  
+      input: LIN_REG.outputVec
+      label: int_power_law_coeff
+      doc:
+        type: Real
+        length: 2
+        description: Slope and intercept based on linear regression over logarithm of relative frequencies of interval occurrences (sorted in descending order)
+

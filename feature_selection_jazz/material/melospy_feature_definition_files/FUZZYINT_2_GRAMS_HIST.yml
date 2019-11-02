@@ -1,0 +1,75 @@
+label: Fuzzy Interval Bigrams
+description: "Histogram features for fuzzy intervals (FUZZYINT, also known as refined contour) bigrams: all unique FUZZYINT bigrams and all FUZZYINT bigrams occuring at least twice."
+
+feature:
+
+  source:
+
+    FUZZINT:
+      param: fuzzyinterval
+
+  process:
+
+    NGRAM:
+      type: ngram
+      N: 2
+      inputVec: FUZZINT.outputVec
+
+    NGRAMHIST:
+      type: hist
+      histogramType: nominal
+      inputVec: NGRAM.outputVec
+
+    TH1:
+      type: threshold
+      inputVec: NGRAMHIST.histVec
+      threshold: 1
+      operator: "gt"
+
+    SEL1:
+      type: selector
+      inputVec: NGRAMHIST.bins
+      selectVec: TH1.outputVec
+
+    SEL2:
+      type: selector
+      inputVec: NGRAMHIST.histVec
+      selectVec: TH1.outputVec
+
+  sink:
+
+    F1:
+      type: sink
+      input: NGRAMHIST.bins
+      label: fuzzyint_2grams_values
+      doc:
+        type: Array  of Integer [-4..+4]
+        length: Variable
+        description: Histogram bins (all unique FUZZYINT bigrams)
+
+    F2:
+      type: sink
+      input: NGRAMHIST.histVec
+      label: fuzzyint_2grams_hist
+      doc:
+        type: Integer
+        length: Variable
+        description: Histogram bin count (all unique FUZZYINT bigrams)
+
+    F3:
+      type: sink
+      input: SEL1.outputVec
+      label: fuzzyint_2grams_pattern
+      doc:
+        type: Array  of Integer [-4..+4]
+        length: Variable
+        description: Histogram bins (all unique FUZZYINT bigrams occuring at least twice)
+
+    F4:
+      type: sink
+      input: SEL2.outputVec
+      label: fuzzyint_2grams_pat_freq
+      doc:
+        type: Integer
+        length: Variable
+        description: Histogram bin count (all unique FUZZYINT bigrams occuring at least twice)

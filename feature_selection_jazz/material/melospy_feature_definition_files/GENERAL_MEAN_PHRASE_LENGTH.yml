@@ -1,0 +1,21 @@
+label: Mean Phrase Lengths
+description: Mean number of notes in each phrase
+feature:
+  source:
+    PITCH:
+      param: pitch
+      aggregationOver: phrases
+  process:
+    LEN:
+      type: length
+      inputVec: PITCH.outputVec
+  sink:
+    F1:
+      aggregationMethod: mean
+      input: LEN.outputVec
+      label: phrase_length
+      doc:
+        type: Real 
+        length: 1
+        description: Mean number of note in each phrases 
+      

@@ -1,0 +1,26 @@
+label: Chord Pitch Class Raw
+description: Raw vector of chordal pitch classes
+feature:
+
+  source:
+    PC:
+      param: chordal-pitch-class
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: 0
+      max: 11
+      density: True
+      inputVec: PC.outputVec
+         
+  sink:
+
+    F1:
+      type: sink
+      input: PC.outputVec
+      label: cpc_raw
+
+    

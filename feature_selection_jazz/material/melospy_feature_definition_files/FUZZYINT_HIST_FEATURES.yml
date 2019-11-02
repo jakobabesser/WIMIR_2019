@@ -1,0 +1,103 @@
+label: Fuzzy Interval Single Densities
+description: "Histogram counts for all 5 fuzzy interval classes (FUZZYINT). Values: **big jump up/down** (+/-4), **jump** up/down** (+/-3), **leap up/down** (+/-1), **step up/down** (+/-1), **repetition** (0)"
+
+feature:
+
+  source:
+    PC:
+      param: fuzzyinterval
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: -4
+      max: +4
+      density: True
+      inputVec: PC.outputVec
+       
+  sink:
+
+    F0:
+      type: sink
+      input: HIST.histVec
+      index: 0
+      label: fuzzyint_hist_big_jump_down
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **big jump down** (-3)"
+    F1:
+      type: sink
+      input: HIST.histVec
+      index: 1
+      label: fuzzyint_hist_jump_down
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **jump down** (-3)"
+    F2:
+      type: sink
+      input: HIST.histVec
+      index: 2
+      label: fuzzyint_hist_leap_down
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **leap down** ( -2)"
+    F3:
+      type: sink
+      input: HIST.histVec
+      index: 3
+      label: fuzzyint_hist_step_down
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **step down** (-1)"
+    F4:
+      type: sink
+      input: HIST.histVec
+      index: 4
+      label: fuzzyint_hist_repeat
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **repetition** (0)"
+    F5:
+      type: sink
+      input: HIST.histVec
+      index: 5
+      label: fuzzyint_hist_step_up
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **step up** (+1)"
+    F6:
+      type: sink
+      input: HIST.histVec
+      index: 6
+      label: fuzzyint_hist_leap_up
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **leap up** (+2)"
+    F7:
+      type: sink
+      input: HIST.histVec
+      index: 7
+      label: fuzzyint_hist_jump_up
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **jump up** (+3)"
+    F8:
+      type: sink
+      input: HIST.histVec
+      index: 8
+      label: fuzzyint_hist_big_jump_up
+      doc:
+        type: Real
+        length: 1
+        description: "Relative frequency **big jump up** (+4)"
+ 

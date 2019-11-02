@@ -1,0 +1,47 @@
+label: Tonal Pitch Class Distribution
+description: Histogram and raw vector of tonal pitch classes (TPC)
+feature:
+
+  source:
+    TPC:
+      param: tonal-pitch-class
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: 0
+      max: 11
+      density: True
+      inputVec: TPC.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: TPC.outputVec
+      label: raw
+      doc:
+        type: Integer
+        length: N
+        description: Raw output of note-wise TPC values
+
+    F2:
+      type: sink
+      input: HIST.bins  
+      label: hist_bins
+      doc:
+        type: Integer [0..11]
+        length: 12
+        description: Histogram bins (all unique TPC values occuring in a melody)
+
+    F3:
+      type: sink
+      input: HIST.histVec
+      label: hist_density
+      doc:
+        type: Real
+        length: 12
+        description: Histogram bin count values (normalized to density)
+      

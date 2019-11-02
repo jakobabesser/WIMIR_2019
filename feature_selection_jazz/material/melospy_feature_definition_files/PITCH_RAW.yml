@@ -1,0 +1,24 @@
+label: Pitch (Raw)
+description: Returns the sequence of raw MIDI pitches.
+feature:
+
+  source:
+    PITCH:
+      param: pitch
+      
+  process:
+
+    ID:
+      type: id
+      inputVec: PITCH.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: ID.outputVec
+      label: pitch_raw
+      doc:
+        type: Integer [0:127]
+        length: N
+        description: Raw output (values of all melody notes)

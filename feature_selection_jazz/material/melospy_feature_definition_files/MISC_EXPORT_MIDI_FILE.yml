@@ -1,0 +1,30 @@
+label: "Special: Export MIDI"
+description: Special puporse feature that  exports solo as MIDI file
+feature:
+  source:
+    PITCH:
+      param: pitch
+    ONSET:
+      param: onset
+    DURATION:
+      param: duration
+    LABEL:
+      param: meta.filenamesv
+      
+  process:
+
+    EXPORT:
+      type: exportMIDI
+      pitch: PITCH.outputVec
+      onset: ONSET.outputVec
+      duration: DURATION.outputVec
+      label: LABEL.outputVec
+
+  sink:
+    F1:
+      input: PITCH.outputVec
+      label: dummy_feature
+      doc:
+        type: N/A
+        length: N/A
+        description: Unused dummy feature.

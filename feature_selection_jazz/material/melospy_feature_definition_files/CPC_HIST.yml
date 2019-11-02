@@ -1,0 +1,48 @@
+label: Chordal Pitch Class Distribution
+description: Histogram and raw vector of chordal pitch classes (CPC)
+
+feature:
+
+  source:
+    PC:
+      param: chordal-pitch-class
+      
+  process:
+
+    HIST:
+      type: hist
+      histogramType: ordinal
+      min: 0
+      max: 11
+      density: True
+      inputVec: PC.outputVec
+       
+  sink:
+
+    F1:
+      type: sink
+      input: PC.outputVec
+      label: raw
+      doc:
+        type: Integer [0:11]
+        length: N
+        description: Raw output (CPC values of all melody notes)
+
+    F2:
+      type: sink
+      input: HIST.bins  
+      label: hist_bins
+      doc:
+        type: Integer [0:11]
+        length: 12
+        description: Histogram bins
+
+    F3:
+      type: sink
+      input: HIST.histVec
+      label: hist_density
+      doc:
+        type: Real
+        length: 12
+        description: Histogram bin count (normalized to density)
+      
